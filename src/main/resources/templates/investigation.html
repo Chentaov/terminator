@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>问卷调查</title>
+</head>
+<script src="/pintuer-2.0/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.css">
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.custom.css">
+<script src="/pintuer-2.0/pintuer-2.0.js"></script>
+<body>
+    <div class="hr align-center"><span><h1 class="text-danger">关于在奥克斯建居家养老的问卷调查</h1></span></div>
+    <div class="padding-big">
+        <form class="form" action="/addinvestation">
+            <label>1：您是几号楼业主？</label>
+            <div class="input-group">
+                <input class="input" name="num" required>
+                <div class="input-help">仅用于统计</div>
+            </div>
+            <div class="input-group">
+                <label>2:您是否了解该居家养老项目</label>
+                <div class="input-block input-check">
+                    <label><input type="radio" name="know" value="了解"  /><i></i> 了解</label>
+                    <label><input type="radio" name="know" value="不了解"  /><i></i> 不了解</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>3:您是否支持该项目在本小区落成？</label>
+                <div class="input-block input-check">
+                    <label><input type="radio" name="support" value="支持"  /><i></i> 支持</label>
+                    <label><input type="radio" name="support" value="反对"  /><i></i> 反对</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>4:您认为在小区就近位置建老年服务中心政府有无必要征询业主意见？</label>
+                <div class="input-block input-check">
+                    <label><input type="radio" name="consultation" value="我觉得有必要"  /><i></i> 我觉得有必要</label>
+                    <label><input type="radio" name="consultation" value="可以不征询" /><i></i> 可以不征询</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>5:您的年龄段属于？</label>
+                <div class="input-block input-check">
+                    <label><input type="radio" name="age" value="25岁上下"  /><i></i> 25岁到35岁</label>
+                    <label><input type="radio" name="age" value="35岁到45岁" /><i></i> 35岁到45岁</label>
+                    <label><input type="radio" name="age" value="45岁到55岁" /><i></i> 45岁到55岁</label>
+                    <label><input type="radio" name="age" value="大于55岁" /><i></i> 大于55岁</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>6:您的性别？</label>
+                <div class="input-block input-check">
+                    <label><input type="radio" name="gender" value="男"  /><i></i> 男</label>
+                    <label><input type="radio" name="gender" value="女"  /><i></i> 女</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>7:您顾虑该项目的落成包括以下哪些？</label>
+                <div class="input-block input-check input-check-inline">
+                    <label><input type="checkbox" name="care" value="对小区房价损害"  /><i></i> 对小区房价的损害</label>
+                    <label><input type="checkbox" name="care" value="对小区品质降低"  /><i></i> 对小区品质的降低</label>
+                    <label><input type="checkbox" name="care" value="目前小区年轻人居多，需求低。"  /><i></i> 小区目前年轻人居多，需求低。</label>
+                    <label><input type="checkbox" name="care" value="增大了日常来往与老年人冲撞的风险" /><i></i> 增大了日常来往与老人冲撞的风险</label>
+                    <label><input type="checkbox" name="care" value="暂无"  /><i></i> 暂无</label>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>8:您支持该项目落成包括以下哪些？</label>
+                <div class="input-block input-check input-check-inline">
+                    <label><input type="checkbox" name="want" value="解决了老年人温饱"  /><i></i> 解决了老人温饱</label>
+                    <label><input type="checkbox" name="want" value="降低了年轻人的生活压力"  /><i></i> 降低了年轻人的生活压力</label>
+                    <label><input type="checkbox" name="want" value="丰富了老年人的生活娱乐"  /><i></i> 丰富了老年人的生活娱乐</label>
+                    <label><input type="checkbox" name="want" value="健全了小区的便民系统"  /><i></i> 健全了小区的便民系统</label>
+                    <label><input type="checkbox" name="want" value="暂无"  /><i></i> 暂无</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>9：您觉得居家养老中心选址要考虑哪些因素？</label>
+               <div class="input-block input-check input-check-inline">
+                   <label><input type="checkbox" name="factor" value="是否处于社区便利位置" /><i></i> 是否处于社区便利位置</label>
+                   <label><input type="checkbox" name="factor" value="老年人口在各个小区的人数"  /><i></i> 老年人口在各个小区的人数</label>
+                   <label><input type="checkbox" name="factor" value="社区居民的需求"  /><i></i> 社区居民的需求</label>
+                   <label><input type="checkbox" name="factor" value="当地居民的意愿"  /><i></i> 当地居民的意愿</label>
+                   <label><input type="checkbox" name="factor" value="暂无"  /><i></i> 暂无</label>
+               </div>
+            </div>
+            <div class="input-group">
+                <label>10:留下您宝贵的建议或意见</label>
+                <div class="input-block input-check">
+                    <div class="input-block">
+                        <textarea class="input" name="proposal" rows="3" placeholder="留言" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-button">
+                <button type="submit" class="button bg-main">提交</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

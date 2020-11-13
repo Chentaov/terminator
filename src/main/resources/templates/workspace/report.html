@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>不文明行为举报</title>
+</head>
+<script src="/pintuer-2.0/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.css">
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.custom.css">
+<script src="/pintuer-2.0/pintuer-2.0.js"></script>
+<body>
+<div th:replace="common/navhead::navhead"></div>
+
+<hr class="border-main" />
+    <div class="hr align-center"><span><h1>不文明行为举报</h1></span></div>
+    <div class="padding-large">
+        <form class="form">
+            <div class="input-group">
+                <label>举报类型</label>
+                <div class="input-block">
+                    <select class="input">
+                        <option>乱丢垃圾</option>
+                        <option>乱停电瓶车</option>
+                        <option>不规范养宠物</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group">
+                <label class="input-required">现场</label>
+                <div class="input-block">
+                    <input class="input" placeholder="在何处发现" type="text" />
+                    <div class="input-help">请准确描述具体地址</div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>发生时间</label>
+                <input class="input" type="time" placeholder="何时发现" />
+            </div>
+            <div class="input-group">
+                <label class="input-required">联系电话</label>
+                <div class="input-block">
+                    <input class="input" placeholder="请填写你的手机号码" type="text" data-validate='{"required":true,"mobile":true,"invalid":"请填写中国大陆的手机号码"}' />
+                    <div class="input-help">用于联系</div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>图片证据</label>
+                <div class="input-block">
+                    <div class="input-image">
+                        <a href="javascript:;">
+                            <input type="file" data-form="upimage" data-size="2" data-ext="jpg,png,gif" data-upload='{"ext":"jpeg,jpg,png,gif","ext_err":"格式错误","size":2,"size_err":"大小超过限制"}' />
+                        </a>
+                        <span></span>
+                        <img style="width:30%;height: 30%; " name="image" />
+                    </div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>备注</label>
+                <div class="input-block">
+                    <textarea class="input" rows="3" placeholder="需要帮忙请备注"></textarea>
+                </div>
+            </div>
+            <div class="form-button">
+                <button type="submit" class="button bg-main">提交</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

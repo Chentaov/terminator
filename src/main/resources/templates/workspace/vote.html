@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>投票</title>
+</head>
+<script src="/pintuer-2.0/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.css">
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.custom.css">
+<script src="/pintuer-2.0/pintuer-2.0.js"></script>
+<script src="/layui/layui.all.js"></script>
+<body>
+    <input id="voter_id" style="display: none" th:value="${id}" />
+    <input id="vote_id" style="display: none" th:value="${vote.getVote_id()}" />
+    <div th:replace="common/navhead::navhead"></div>
+    <hr class="border-main" />
+    <div class="padding-big" id="vote1">
+        <fieldset class="padding-small">
+            <legend class="size-large text-danger" th:text="${vote.getVote_name()}+'    '+${vote.getEnd_date()}+'截止'"></legend>
+            <div class="input-group">
+                <label class="input-required size-large">说明</label>
+                <textarea disabled="disabled" class="input size-small" rows="3" th:text="${vote.getVote_des()}"></textarea>
+            </div>
+            <div class="input-group" th:each="item:${items}">
+                <label class="size-large " th:text="${item.getItem_name()}"></label>
+                <div class="progress bg-light">
+                    <span th:id="${item.getItem_id()}" th:text="${item.getItem_num()}+'票'" class="progress-bar " th:style="'width:'+${item.getItem_num()}+'%'"></span>
+                </div>
+            </div>
+            <div class="padding-small"></div>
+            <button th:classappend="${btn.getItem_id()==item_id} ? 'bg-info' : ''" th:each="btn:${items}" th:id="${btn.getItem_id()}" th:text="${btn.getItem_name()}" class="button bg-silver  margin-right-small"></button>
+        </fieldset>
+    </div>
+
+<script>
+    $(function () {
+        var time;
+        var voter_id = $("#voter_id").val();
+        var vote_id = $("#vote_id").val();
+        $('button').click(function () {
+                var thisbtn = $(this);
+                var thisitem = thisbtn.attr("id");
+                var val1 = parseFloat($("#"+thisitem+"").html()); //将数字提取，去除其它符号。
+                if(val1>=100){
+                    val1 = val1;
+                }
+                else{
+                    $.ajax({
+                        url:'/dovote',
+                        type:'post',
+                        dataType:"json",
+                        data:{
+                            "item_id":thisitem,
+                            "vote_id":vote_id,
+                            "voter_id":voter_id
+                        },
+                        success:function (data) {
+                            var itemed = JSON.stringify(data.itemed);
+                            var subItemId = JSON.stringify(data.subItemId);
+                            var plusItemId = JSON.stringify(data.plusItemId);
+                            var newPlusItemId = JSON.stringify(data.newPlusItemId);
+                            var subItemVal = parseFloat($("#"+subItemId+"").html());
+                            var plusItemVal = parseFloat($("#"+plusItemId+"").html());
+                            var newPlusItemVal = parseFloat($("#"+newPlusItemId+"").html());
+                            subItemVal--;
+                            if(newPlusItemId!=undefined){
+                                layer.msg('感谢您的投票');
+                                newPlusItemVal++
+                            }
+                            if(itemed!='true'){
+                                layer.msg('感谢您的投票');
+                                plusItemVal++;
+                            }
+                            else{
+                                layer.msg('请勿重复投票');
+                            }
+
+                            $("#"+subItemId+"").css('width',subItemVal+'%');
+                            $("#"+subItemId+"").html(subItemVal+'票');
+
+                            $("#"+plusItemId+"").css('width',plusItemVal+'%');
+                            $("#"+plusItemId+"").html(plusItemVal+'票');
+                            $("#"+newPlusItemId+"").css('width',newPlusItemVal+'%');
+                            $("#"+newPlusItemId+"").html(newPlusItemVal+'票');
+                        }
+                    })
+                }
+                setTimeout(function () {
+                    $('button').attr('disabled',false);
+                },5000)
+                $('button').attr('disabled','disabled');
+        })
+    })
+</script>
+<script>
+    $(function () {
+        $("button").click(function () {
+            var thisbtn = $(this);
+            $('button').removeClass('bg-info');
+            thisbtn.addClass('bg-info');
+        })
+    })
+</script>
+</body>
+</html>

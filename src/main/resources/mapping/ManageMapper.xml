@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aux.terminator.dao.mapper.ManageMapper">
+    <insert id="NewVote" parameterType="com.aux.terminator.pojo.Vote" useGeneratedKeys="true" keyProperty="vote_id">
+        insert into terminator.vote (vote_name,vote_des,end_date,sponsor_id) values (#{vote_name},#{vote_des},#{end_date},#{sponsor_id})
+    </insert>
+    <insert id="NewItem" parameterType="com.aux.terminator.pojo.Vote_item">
+        insert into terminator.vote_item ( item_name, vote_id) values (#{item_name},#{vote_id})
+    </insert>
+    <insert id="NewPage" parameterType="com.aux.terminator.pojo.Pages">
+        insert into terminator.pages (page_name,page_link,page_type,page_des,release_time)values (#{page_name},#{page_link},#{page_type},#{page_des},now())
+    </insert>
+    <insert id="NewNotice" parameterType="com.aux.terminator.pojo.Notice">
+        insert into terminator.notice (notice_title,notice_content,release_time,releaser_id) values (#{notice_title},#{notice_content},now(),#{releaser_id})
+    </insert>
+</mapper>

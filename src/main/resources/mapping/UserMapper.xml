@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aux.terminator.dao.mapper.UserMapper">
+    <insert id="addInvestation" parameterType="com.aux.terminator.pojo.Investigation">
+        insert into investigation values (#{id},#{num},#{know},#{support},#{consultation},#{age},#{gender},#{care},#{want},#{factor},#{proposal})
+    </insert>
+    <select id="signin" resultType="com.aux.terminator.pojo.User">
+        select * from user where id = #{id} and password = #{password}
+    </select>
+    <select id="voted" resultType="com.aux.terminator.pojo.Voter">
+        select * from terminator.voter where vote_id = #{vote_id} and voter_id = #{voter_id}
+    </select>
+    <insert id="voteById" parameterType="com.aux.terminator.pojo.Voter">
+        insert into terminator.voter values (#{item_id},#{vote_id},#{voter_id})
+    </insert>
+    <delete id="resetVote" parameterType="com.aux.terminator.pojo.Voter">
+        delete from terminator.voter where vote_id = #{vote_id} and voter_id = #{voter_id}
+    </delete>
+    <update id="itemNumPlus" parameterType="Int">
+        update terminator.vote_item set item_num = item_num+1 where item_id = #{item_id}
+    </update>
+    <update id="itemNumSub" parameterType="com.aux.terminator.pojo.Voter">
+        update VoterAndItemBy_Itemid set item_num = item_num-1 where voter_id = #{voter_id} and vote_id = #{vote_id}
+    </update>
+    <select id="findSubItemId" resultType="Int" parameterType="com.aux.terminator.pojo.Voter">
+        select item_id from VoterAndItemBy_Itemid where voter_id = #{voter_id} and vote_id = #{vote_id}
+    </select>
+    <select id="findPlusItemId" resultType="Int" parameterType="Int">
+        select item_id from VoterAndItemBy_Itemid where item_id = #{item_id} limit 1
+    </select>
+    <select id="itemed" resultType="com.aux.terminator.pojo.Voter">
+        select item_id,voter_id from voter where voter_id = #{voter_id} and item_id = #{item_id}
+    </select>
+    <insert id="addUser" parameterType="String">
+        insert into user values (#{id},#{password})
+    </insert>
+    <update id="resetPass" parameterType="com.aux.terminator.pojo.User">
+        update terminator.user set password = #{password} where id = #{id}
+    </update>
+</mapper>

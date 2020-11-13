@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新建公告</title>
+</head>
+<script src="/pintuer-2.0/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.css">
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.custom.css">
+<script src="/pintuer-2.0/pintuer-2.0.js"></script>
+<script src="https://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+<script src="/layui/layui.all.js"></script>
+<body>
+    <div th:replace="common/navhead::navhead"></div>
+    <hr class="border-main" />
+    <div class="padding-big">
+        <form class="form" action="/newnotice">
+            <input name="releaser_id" class="hidden" th:value="${id}"/>
+            <div class="input-group">
+                <label >公告名称</label>
+                <input name="notice_title" required class="input"/>
+            </div>
+            <div class="input-group">
+                <label >公告内容</label>
+                <div id="editor">
+                </div>
+                <textarea id="content" name="notice_content" class="hidden"></textarea>
+            </div>
+            <button class="button bg-main">发布</button>
+        </form>
+    </div>
+</body>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create()
+    $('button').click(function () {
+        $('#content').val(editor.txt.html());
+    })
+</script>
+<script>
+    // $(document).on('click','div>ul',function () {
+    //     if($('#editor').css('display')=='none'){
+    //         $('#editor').css('display','block');
+    //     }else{
+    //         $('#editor').css('display','none');
+    //     }
+    //
+    // })
+</script>
+</html>

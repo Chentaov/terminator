@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>装修申请</title>
+</head>
+<script src="/pintuer-2.0/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.css">
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.custom.css">
+<script src="/pintuer-2.0/pintuer-2.0.js"></script>
+<body>
+<div th:replace="common/navhead::navhead"></div>
+<hr class="border-main" />
+    <div class="hr align-center"><span><h1>装修申请</h1></span></div>
+    <div class="padding-large">
+        <form class="form">
+            <div class="input-group">
+                <label class="input-required">户号</label>
+                <div class="input-block">
+                    <input class="input" placeholder="输入框" type="text" />
+                    <div class="input-help">请认真输入</div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label class="input-required">联系电话</label>
+                <div class="input-block">
+                    <input class="input" placeholder="请填写你的手机号码" type="text" data-validate='{"required":true,"mobile":true,"invalid":"请填写中国大陆的手机号码"}' />
+                    <div class="input-help">用于联系</div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>是否托管装修</label>
+                <div class="input-block input-check">
+                    <label><input type="radio" name="radio" /><i></i> 是</label>
+                    <label><input type="radio" name="radio" /><i></i> 否</label>
+                    <div class="input-help">托管可委托物业查看</div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>预计装修日期</label>
+                <input class="input" type="date" placeholder="预计装修日期" />
+            </div>
+            <div class="input-group">
+                <label>备注</label>
+                <div class="input-block">
+                    <textarea class="input" rows="3" placeholder="需要帮忙请备注"></textarea>
+                </div>
+            </div>
+            <div class="form-button">
+                <button type="submit" class="button bg-main">提交</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

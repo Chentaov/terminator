@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<head>
+    <meta charset="UTF-8">
+    <title>导航头部</title>
+</head>
+<script src="/pintuer-2.0/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.css">
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.custom.css">
+    <script src="/pintuer-2.0/pintuer-2.0.js"></script>
+<body>
+    <div  style="width: 100%" th:fragment="navhead">
+        <div class="navbar size-large">
+            <a class="navbar-logo size-large" href="/workspace/main"><img style="width:120px;height: 85px " src="/common/img/logo.jpg"><i></i></span>奥克斯</a>
+            <div class="navbar-body" id="navbody">
+                <ul id="navhead" class="nav nav-divider">
+                    <li class="active"><a href="javascript:;">关于奥克斯</a></li>
+                    <li><a href="/workspace/tel">监督电话</a></li>
+                    <li><a href="/manage/vehicle">车辆管理</a></li>
+                    <li><a href="/manage/allvote">所有投票</a></li>
+                    <li><a href="/manage/newvote">新建投票</a></li>
+                    <li><a href="/manage/newpage">添加页面</a></li>
+                    <li><a href="/manage/newnotice">添加公告</a></li>
+                    <li><a href="/admin/resetpass">修改密码</a></li>
+                    <li><a href="sms:106593005?body=mm">获得闪讯密码</a></li>
+                    <li><a href="/loguot">退出</a></li>
+                </ul>
+                <div class="navbar-after">
+                    奥克斯物业真诚为您服务
+                </div>
+            </div>
+            <div class="navbar-addon">
+                <div class="navbar-after ">
+                    您好[[${id}]]，欢迎光临！
+                </div>
+            </div>
+            <ul class="nav nav-switch size-mini" data-navswitch="#navbody"><li></li><li></li><li></li></ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aux.terminator.dao.mapper.ManageViewMapper">
+    <select id="findAllVote" resultType="com.aux.terminator.pojo.Vote">
+        select vote_id,vote_name,end_date,vote_des from terminator.vote order by end_date asc
+    </select>
+    <select id="findVoteById" resultType="com.aux.terminator.pojo.Vote" parameterType="Int">
+        select vote_id,vote_name,end_date,vote_des from terminator.vote where vote_id = #{vote_id}
+    </select>
+    <select id="findItemById" resultType="com.aux.terminator.pojo.Vote_item" parameterType="Int">
+        select item_id,item_name,vote_id,item_num from terminator.vote_item where vote_id = #{vote_id}
+    </select>
+    <select id="findVotedItem" resultType="com.aux.terminator.pojo.Vote" parameterType="com.aux.terminator.pojo.Vote">
+        select item_id from VoterAndItemBy_Itemid where vote_id = #{vote_id} and voter_id = #{voter_id}
+    </select>
+    <select id="findPageByType" resultType="com.aux.terminator.pojo.Pages" parameterType="String">
+        select * from pages where page_type = #{page_type} order by release_time desc
+    </select>
+    <select id="findNotice" resultType="com.aux.terminator.pojo.Notice" >
+        select * from terminator.notice  order by release_time desc
+    </select>
+    <select id="findNoticeById" resultType="com.aux.terminator.pojo.Notice" parameterType="Int" >
+        select * from terminator.notice where notice_id = #{notice_id}  order by release_time desc
+    </select>
+</mapper>

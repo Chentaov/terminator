@@ -1,0 +1,91 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>登录注册</title>
+	<link rel="stylesheet" type="text/css" href="/admin/css/styles.css">
+	<!--<script src="/pintuer-2.0/jquery-3.4.1.min.js"></script>-->
+	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.custom.css">-->
+    <script src="/pintuer-2.0/pintuer-2.0.js"></script>
+	<!--&lt;!&ndash;[if IE]>-->
+		<!--<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>-->
+	<!--<![endif]&ndash;&gt;-->
+</head>
+<body>
+	<div class="jq22-container" style="padding-top:100px">
+		<div class="login-wrap">
+			<div class="login-html">
+				<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">登录</label>
+				<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+				<div class="login-form" >
+					<div class="sign-in-htm">
+						<div class="group">
+							<label for="user" class="label">房号</label>
+							<input required id="user" name="id" type="text" class="input">
+						</div>
+						<div class="group">
+							<label for="pass" class="label">密码</label>
+							<input required id="pass" name="password" type="password" class="input" data-type="password">
+						</div>
+						<div class="group">
+							<input id="check" type="checkbox" class="check" checked>
+							<label for="check"><span class="icon"></span> 记住登录状态</label>
+						</div>
+						<div class="group">
+							<input id="signin" type="submit" class="button" value="登录">
+						</div>
+						<div class="hr"></div>
+						<div class="foot-lnk">
+							<a href="#forgot">忘记密码?</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script>
+	$(function () {
+		$("#signin").click(function () {
+            var id = $("#user").val();
+            var password = $("#pass").val();
+            $.ajax({
+                url:'/dosigin',
+                type:'post',
+                data:{
+                    "id":id,
+                    "password":password
+                },
+                success:function (data) {
+                    if (JSON.stringify(data)=='1'){
+                        window.location.href = "workspace/main";
+                    }
+                    else{
+                        alert("帐号密码不匹配");
+                    }
+                },
+                error:function () {
+                    alert("服务器错误");
+                }
+            })
+		})
+	})
+</script>
+
+<script>
+	$(function () {
+
+		$('.input').blur(function () {
+			var thisinput = $(this);
+			if(thisinput.val()==''||thisinput.val()==null){
+				thisinput.attr('placeholder','这里空空如也');
+			}
+		})
+	})
+</script>
+</html>

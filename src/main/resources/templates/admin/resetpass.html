@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改密码</title>
+</head>
+<script src="/pintuer-2.0/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.css">
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.custom.css">
+<script src="/pintuer-2.0/pintuer-2.0.js"></script>
+<body>
+
+    <input id="id" style="display: none" th:value="${id}" />
+    <div th:replace="common/navhead::navhead"></div>
+    <hr class="border-main bg-main" />
+    <div class="padding-big">
+       <form class="form" action="/doresetpass">
+           <div class="input-group">
+               <input name="id" style="display: none" th:value="${id}" />
+               <label class="margin-right-big">原始密码</label><span id="oldpass_right" class="hidden icon-check text-main"></span><span id="oldpass_wrong" class="hidden icon-times text-danger"></span>
+               <input  id="oldpass"  type="password" required class="input" />
+           </div>
+           <div class="input-group">
+               <label class="margin-right-big">输入新密码</label><span id="newpass_right" class="hidden icon-check text-main"></span><span id="newpass_wrong" class="hidden icon-times text-danger"></span>
+               <input id="newpass" name="password" type="password" required class="input" />
+           </div>
+           <button type="submit" class="button bg-main">修改</button>
+       </form>
+    </div>
+</body>
+<script>
+    $(function () {
+        $('#oldpass').blur(function () {
+            var oldpass = $(this).val();
+            var id = $("#id").val();
+           if(oldpass==''){
+               $("#oldpass").attr('placeholder','禁止为空');
+               $("#oldpass_wrong").addClass("hidden");
+               $("#oldpass_right").addClass("hidden");
+               return;
+           }
+           else{
+               $.ajax({
+                   url:'/testpass',
+                   type:'post',
+                   data:{
+                       "id":id,
+                       "password":oldpass
+                   },
+                   success:function (data) {
+                       if(data==1){
+                           $("#oldpass_right").removeClass("hidden");
+                           $("#oldpass_wrong").addClass("hidden");
+                           return;
+                       }
+                       else{
+                           $("#oldpass_wrong").removeClass("hidden");
+                           $("#oldpass_right").addClass("hidden");
+                           return;
+                       }
+                   },
+                   error:function () {
+                       alert("服务器错误");
+                   }
+               })
+           }
+        })
+
+        $("#newpass").blur(function () {
+            var thisinput = $(this);
+            if(thisinput.val()==''){
+                $("#newpass").attr('placeholder','禁止为空');
+                return;
+            }
+        })
+    })
+</script>
+</html>

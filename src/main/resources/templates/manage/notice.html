@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>公告</title>
+</head>
+<script src="/pintuer-2.0/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.css">
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.custom.css">
+<script src="/pintuer-2.0/pintuer-2.0.js"></script>
+<body>
+    <div th:replace="common/navhead::navhead"></div>
+    <hr class="border-main" />
+    <div style="text-align: center">
+        <label class="margin-right-large size-large" th:text="${notice.getNotice_title()}"></label>
+        <label class="margin-left-large text-gray" th:text="${notice.getRelease_time()}">时间</label>
+    </div>
+    <div class="padding-big">
+        <span style="height: fit-content" th:utext="${notice.getNotice_content()}" disabled="disabled" class="input size-small" rows="30"></span>
+    </div>
+
+</body>
+</html>

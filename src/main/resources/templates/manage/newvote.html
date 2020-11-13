@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新建投票</title>
+</head>
+<script src="/pintuer-2.0/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.css">
+<link rel="stylesheet" type="text/css" href="/pintuer-2.0/pintuer-2.0.custom.css">
+<script src="/pintuer-2.0/pintuer-2.0.js"></script>
+<script src="/layui/layui.all.js"></script>
+<link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
+<body>
+    <div th:replace="common/navhead::navhead"></div>
+    <hr class="border-main bg-main" />
+    <div class="padding-large">
+        <form class="form" action="/newvote">
+            <input style="display: none" name="sponsor_id"   th:value="${id}" />
+            <div class="input-group">
+                <label class="input-required size-large">投票主题</label>
+                <div class="input-block">
+                    <input required name="vote_name" class="input" placeholder="主题" type="text" />
+                    <div class="input-help">要求简洁明确</div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label class="input-required size-large">截止日期</label>
+                <div class="input-block">
+                    <input required name="end_date" class="input"  type="date" />
+                    <div class="input-help">请准确输入</div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-required size-large">投票项</label>
+                <div class="form">
+                    <div id="vote-items" class="input-group">
+                        <div class="input-inline padding-small">
+                            <a  class="button bg-danger">-</a>
+                            <input required name="item_name" class="vote input" placeholder="不要使用逗号或空格" type="text" />
+                        </div>
+                        <div class="input-inline padding-small">
+                            <a  class="button bg-danger">-</a>
+                            <input required name="item_name" class="vote input" placeholder="不要使用逗号或空格" type="text" />
+                        </div>
+                    </div>
+                    <a id="additem" class="button bg-main">+</a>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="size-large">备注</label>
+                <div class="input-block">
+                    <textarea name="vote_des" class="input" rows="3" placeholder="备注和说明"></textarea>
+                </div>
+            </div>
+            <button class="button text-main size-big" >提交</button>
+        </form>
+    </div>
+
+</body>
+
+<script>
+    $(function () {
+        var num = 2;
+        $('#additem').click(function () {
+            $('#vote-items').append('<div class="input-inline padding-small"><a class="button bg-danger">-</a><input required name="item_name" class="vote input" placeholder="不要使用逗号或空格" type="text"/></div></div>');
+            num++;
+        })
+
+        $(document).on('click','.bg-danger',function () {
+            var thisitem = $(this);
+            if(num>2){
+                num--;
+                $(thisitem).parent('div').remove();
+            }
+            else{
+                layer.msg('最少两个选项');
+            }
+        })
+
+        $(document).on('blur','.vote',function () {
+            var thisinput = $(this);
+            thisinput.val((thisinput.val()).replace(/,/g,''));
+            thisinput.val((thisinput.val()).replace(/ /g,''));
+        })
+    })
+</script>
+</html>
