@@ -55,7 +55,7 @@ public class UserController {
         return r;
     }
 
-//
+
     @RequestMapping("dovote")
     public JSONObject dovote(Voter voter){
         JSONObject j =new JSONObject();
